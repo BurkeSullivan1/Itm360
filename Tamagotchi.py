@@ -5,23 +5,28 @@
 import random
 # class attributes
 class Pet:
+    # the attributes' values are not exactly as expected.. -4 points
     food_reduce = 2
-    food_warning = 5
+    food_warning = 5 
     boredom_max = 10
     food_max = 10
     health_max = 10
     sounds = ["Hmmmmmm...ahhh"]
+    
 # Parent class constructor - paramater for Pet name - added health attribute
     def __init__(self, name):
+        # -3 points
         self.name = name
-        self.food = random.randint(5, self.food_max) # random integer between 5 - 10
+        self.food = random.randint(5, self.food_max) # random integer between 5 - 10 # expected to be between 0-max
         self.boredom = random.randint(0, self.boredom_max) # random integer for Pet boredom
-        self.health = self.health_max #health setting for pet - added customization
+        self.health = self.health_max #health setting for pet - added customization # self.hygiene is missing
         self.sounds = self.sounds[:]  # Copy of the class attribute - [:] slicing keeps class list memory stored when changed later
 # clock tick method -
     def clock_tick(self):
         self.food -= self.food_reduce
         self.boredom += 1
+
+        # no health check required.
         if self.food < self.food_warning or self.boredom > self.boredom_max / 2:
             self.health -= 1
         else:
@@ -35,6 +40,7 @@ class Pet:
         if self.food >= self.food_max:
             print(f"{self.name} is not hungry.")
         else:
+            # not as instructed. -3 points
             self.food = min(self.food + 3, self.food_max)  # Ensure food does not exceed max
             food_percentage = (self.food / self.food_max) * 100  # Calculate the percentage
             print(f"{self.name}'s food level is now at {food_percentage:.0f}% full.")
@@ -57,10 +63,16 @@ class Pet:
             return "bored"
 
     def reduce_boredom(self):
+        # -2 points
+        # boredom_reduce, as a constant attribute, is expected to be declared as a class attribute at beginning
         self.boredom = max(0, self.boredom - 3)
-# string function to print status for pet class
+
+    # missing bathe method: - 6points
+# string function to print status for pet class # expect a __str__ method
     def status(self):
         print(f"{self.name}'s status:\nFood: {self.food}/{self.food_max}\nBoredom: {self.boredom}/{self.boredom_max}\nHealth: {self.health}/{self.health_max}\nMood: {self.mood()}")
+
+# missing a cat(Pet) child class - 10 points
 
 #child class for dinosaur pet - customizable features for mood - health and die functions
 class Dino(Pet):
