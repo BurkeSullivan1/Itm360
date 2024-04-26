@@ -192,6 +192,21 @@ def drop_tables():
         print(f"An error occurred while dropping tables: {e}")
     finally:
         conn.close()
+### added member table
+def update_member_table():
+    try:
+        conn = db_connect()
+        cursor = conn.cursor()
+        cursor.execute("""
+            ALTER TABLE Member
+            ADD Password LONGTEXT
+        """)
+        conn.commit()
+        print("Member table updated successfully with a password column.")
+    except Exception as e:
+        print(f"An error occurred while updating the Member table: {e}")
+    finally:
+        conn.close()
 
 #### RUNNING PROGRAM
 if __name__ == "__main__":
