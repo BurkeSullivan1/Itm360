@@ -1,0 +1,29 @@
+<!-- templates/signup.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Signup</title>
+</head>
+<body>
+<h1>Sign Up</h1>
+<form method="post" action="{{ url_for('auth.signup') }}">
+  <label for="mno">Member Number:</label>
+  <input type="text" id="mno" name="mno" required><br>
+
+  <label for="password">Password:</label>
+  <input type="password" id="password" name="password" required><br>
+
+  <button type="submit">Sign Up</button>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  <ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+  {% endwith %}
+</form>
+</body>
+</html>
