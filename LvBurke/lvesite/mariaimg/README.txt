@@ -1,0 +1,1 @@
+Add your photos and videos to this folder, then run npm run build:gallery
