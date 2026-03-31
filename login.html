@@ -1,0 +1,35 @@
+<!-- templates/login.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<h1>Login</h1>
+<form method="post" action="{{ url_for('auth.login') }}">
+    <label for="mno">Member Number:</label>
+    <input type="text" id="mno" name="mno" required><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br>
+
+    <button type="submit">Login</button>
+</form>
+{% if message %}
+<p>{{ message }}</p>
+{% endif %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<!-- Temporary debug output -->
+<p>Debug MNO: {{ request.form['mno'] }}</p>
+<p>Debug Password: {{ request.form['password'] }}</p>
+</body>
+</html>
